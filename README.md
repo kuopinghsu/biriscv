@@ -17,9 +17,9 @@ The SystemC and Verilator must be installed properly in system.
 ## Running Example
 
 ```
-$ make tcm=0 hello
-$ make tcm=0 coremark
-$ make tcm=0 dhrystone
+$ make hello
+$ make coremark
+$ make dhrystone
 ```
 
 ---
