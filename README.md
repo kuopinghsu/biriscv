@@ -1,10 +1,18 @@
 # biRISC-V - 32-bit dual issue RISC-V CPU Software Environment
 
+biRISC-V is a 32-bit dual issue RISC-V CPU core, which can be obtained
+from here,
+
 github: http://github.com/ultraembedded/biriscv
+
+This repo is for the software code running in the biRISC-V verilator
+simulation enviroment. It includes coremark and dhrystone benchmarks.
 
 # Geting Started
 
 git clone --recursive https://github.com/kuopinghsu/biriscv.git
+
+The SystemC and Verilator must be installed properly in system.
 
 ## Running Example
 
@@ -14,7 +22,9 @@ $ make tcm=0 coremark
 $ make tcm=0 dhrystone
 ```
 
+---
 The output of coremark is;
+
 
 ```
         SystemC 2.3.3-Accellera --- May 18 2021 20:21:23
@@ -47,7 +57,9 @@ CoreMark/MHz: 3.333047
 TB: Aborted at 14684140 ns
 ```
 
+---
 The output of dhrystone is;
+
 
 ```
         SystemC 2.3.3-Accellera --- May 18 2021 20:21:23
