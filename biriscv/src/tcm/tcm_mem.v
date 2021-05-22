@@ -24,6 +24,15 @@
 //-----------------------------------------------------------------
 
 module tcm_mem
+//-----------------------------------------------------------------
+// Params
+//-----------------------------------------------------------------
+#(
+    parameter TCM_MEM_SIZE     = 64 * 1024
+)
+//-----------------------------------------------------------------
+// Ports
+//-----------------------------------------------------------------
 (
     // Inputs
      input           clk_i
@@ -144,28 +153,30 @@ u_conv
 //-------------------------------------------------------------
 // Dual Port RAM
 //-------------------------------------------------------------
-
 // Mux access to the 2nd port between external access and CPU data access
 wire                 muxed_hi_w   = ext_accept_w ? ext_addr_w[2] : mem_d_addr_i[2];
-wire [12:0] muxed_addr_w = ext_accept_w ? ext_addr_w[15:3] : mem_d_addr_i[15:3];
+wire [$clog2(TCM_MEM_SIZE/8)-1:0] muxed_addr_w = ext_accept_w ? ext_addr_w[$clog2(TCM_MEM_SIZE)-1:3] : mem_d_addr_i[$clog2(TCM_MEM_SIZE)-1:3];
 wire [31:0] muxed_data_w = ext_accept_w ? ext_write_data_w : mem_d_data_wr_i;
 wire [3:0]  muxed_wr_w   = ext_accept_w ? ext_wr_w         : mem_d_wr_i;
 wire [63:0] data_r_w;
 
 tcm_mem_ram
+#(
+    .TCM_MEM_SIZE(TCM_MEM_SIZE)
+)
 u_ram
 (
     // Instruction fetch
      .clk0_i(clk_i)
     ,.rst0_i(rst_i)
-    ,.addr0_i(mem_i_pc_i[15:3])
+    ,.addr0_i(mem_i_pc_i[$clog2(TCM_MEM_SIZE)-1:3])
     ,.data0_i(64'b0)
     ,.wr0_i(8'b0)
 
     // External access / Data access
     ,.clk1_i(clk_i)
     ,.rst1_i(rst_i)
-    ,.addr1_i(muxed_addr_w)
+    ,.addr1_i(muxed_addr_w[$clog2(TCM_MEM_SIZE/8)-1:0])
     ,.data1_i(muxed_hi_w ? {muxed_data_w, 32'b0} : {32'b0, muxed_data_w})
     ,.wr1_i(muxed_hi_w ? {muxed_wr_w, 4'b0} : {4'b0, muxed_wr_w})
 

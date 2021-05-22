@@ -24,16 +24,25 @@
 //-----------------------------------------------------------------
 
 module tcm_mem_ram
+//-----------------------------------------------------------------
+// Params
+//-----------------------------------------------------------------
+#(
+    parameter TCM_MEM_SIZE     = 64 * 1024
+)
+//-----------------------------------------------------------------
+// Ports
+//-----------------------------------------------------------------
 (
     // Inputs
      input           clk0_i
     ,input           rst0_i
-    ,input  [ 12:0]  addr0_i
+    ,input  [$clog2(TCM_MEM_SIZE/8)-1:0]  addr0_i
     ,input  [ 63:0]  data0_i
     ,input  [  7:0]  wr0_i
     ,input           clk1_i
     ,input           rst1_i
-    ,input  [ 12:0]  addr1_i
+    ,input  [$clog2(TCM_MEM_SIZE/8)-1:0]  addr1_i
     ,input  [ 63:0]  data1_i
     ,input  [  7:0]  wr1_i
 
@@ -49,7 +58,7 @@ module tcm_mem_ram
 // Mode: Read First
 //-----------------------------------------------------------------
 /* verilator lint_off MULTIDRIVEN */
-reg [63:0]   ram [8191:0] /*verilator public*/;
+reg [63:0]   ram [(TCM_MEM_SIZE/8)-1:0] /*verilator public*/;
 /* verilator lint_on MULTIDRIVEN */
 
 reg [63:0] ram_read0_q;

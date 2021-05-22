@@ -8,11 +8,52 @@ github: http://github.com/ultraembedded/biriscv
 This repo is for the software code running in the biRISC-V verilator
 simulation enviroment. It includes coremark and dhrystone benchmarks.
 
+Notes: The coremark and dhrystone reuquire a memory size of 128Kb. The
+original biRISC-V TCM is only 64Kb. In order to run benchmarks in TCM,
+I configured it to 64Kb.
+
 # Geting Started
 
 git clone --recursive https://github.com/kuopinghsu/biriscv.git
 
 The SystemC and Verilator must be installed properly in system.
+
+## Building toolchains
+
+Install RISCV toolchains.
+
+    # Ubuntu packages needed:
+    sudo apt-get install autoconf automake autotools-dev curl libmpc-dev \
+        libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
+        gperf libtool patchutils bc zlib1g-dev git libexpat1-dev
+
+    git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
+    cd riscv-gnu-toolchain
+
+    mkdir build; cd build
+    ../configure --prefix=/opt/riscv --enable-multilib
+    make -j$(nproc)
+
+Install Verilator
+
+    # Ubuntu packages needed:
+    sudo apt-get install verilator
+
+    # install systemc
+    wget https://www.accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
+    tar xzf systemc-2.3.3.tar.gz
+    cd systemc-2.3.3
+    mkdir build && cd build
+    ../configure --prefix=/usr/local
+    make
+    sudo make install
+
+    # add the env into .bashrc
+    export SYSTEMC_HOME=/usr/local/systemc-2.3.3
+    export SYSTEMC_INCLUDE=$SYSTEMC_HOME/include
+    export SYSTEMC_LIBDIR=$SYSTEMC_HOME/lib-linux64
+
+    export LD_LIBRARY_PATH=$SYSTEMC_LIBDIR:$LD_LIBRARY_PATH
 
 ## Running Example
 
@@ -135,5 +176,20 @@ User_Time: 25362 cycles
 Dhrystones_Per_Second_Per_MHz: 3942
 DMIPS_Per_MHz: 2.243
 TB: Aborted at 1678880 ns
+```
+
+To run benchmarks in TCM, running the following commands.
+
+
+```
+$ make tcm=1 coremark
+$ make tcm=1 dhrystone
+```
+
+Getting the following resuls,
+
+```
+DMIPS_Per_MHz: 2.415
+CoreMark/MHz: 3.345606
 ```
 

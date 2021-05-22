@@ -28,7 +28,8 @@ module dport_mux
 // Params
 //-----------------------------------------------------------------
 #(
-     parameter TCM_MEM_BASE     = 0
+     parameter TCM_MEM_BASE     = 0,
+     parameter TCM_MEM_SIZE     = 64 * 1024
 )
 //-----------------------------------------------------------------
 // Ports
@@ -91,7 +92,7 @@ module dport_mux
 wire hold_w;
 
 /* verilator lint_off UNSIGNED */
-wire tcm_access_w = (mem_addr_i >= TCM_MEM_BASE && mem_addr_i < (TCM_MEM_BASE + 32'd65536));
+wire tcm_access_w = (mem_addr_i >= TCM_MEM_BASE && mem_addr_i < (TCM_MEM_BASE + TCM_MEM_SIZE));
 /* verilator lint_on UNSIGNED */
 
 reg       tcm_access_q;
