@@ -8,9 +8,9 @@ github: http://github.com/ultraembedded/biriscv
 This repo is for the software code running in the biRISC-V verilator
 simulation enviroment. It includes coremark and dhrystone benchmarks.
 
-Notes: The coremark and dhrystone reuquire a memory size of 128Kb. The
+Notes: The coremark and dhrystone reuquire a memory size of 256Kb. The
 original biRISC-V TCM is only 64Kb. In order to run benchmarks in TCM,
-I configured it to 64Kb.
+I configured it to 256Kb.
 
 # Geting Started
 
@@ -72,20 +72,20 @@ The output of coremark is;
         Copyright (c) 1996-2018 by all Contributors,
         ALL RIGHTS RESERVED
 Running: ../../../sw/coremark/coremark.elf
-Memory: 0x80000000 - 0x8001800f (Size=96KB) [.text]
-Memory: 0x80018010 - 0x8001804b (Size=0KB) [.eh_frame]
-Memory: 0x80018050 - 0x80019da3 (Size=7KB) [.data]
-Memory: 0x80019da4 - 0x8001ddf7 (Size=16KB) [.bss]
+Memory: 0x80000000 - 0x8001d3d7 (Size=116KB) [.text]
+Memory: 0x8001d3d8 - 0x8001d413 (Size=0KB) [.eh_frame]
+Memory: 0x8001d418 - 0x8001f2fb (Size=7KB) [.data]
+Memory: 0x8001f2fc - 0x8002334f (Size=16KB) [.bss]
 
 Info: (I702) default timescale unit used for tracing: 1 ns (sysc_wave.vcd)
 2K performance run parameters for coremark.
 CoreMark Size    : 666
-Total ticks      : 1200103
-Total time (secs): 0.012001
-Iterations/Sec   : 333.304725
+Total ticks      : 1112886
+Total time (secs): 0.011129
+Iterations/Sec   : 359.425853
 Iterations       : 4
 Compiler version : GCC10.2.0
-Compiler flags   : -O3 -march=rv32im -mabi=ilp32 -nostartfiles -nostdlib -L../common -DPERFORMANCE_RUN=1   -lc -lm -lgcc -lsys -T ../common/default.ld
+Compiler flags   : -O2 -march=rv32im -mabi=ilp32 -nostartfiles -nostdlib -L../common -DPERFORMANCE_RUN=1 -fno-common -funroll-loops -finline-functions -falign-functions=16 -falign-jumps=4 -falign-loops=4 -finline-limit=1000 -fno-if-conversion2 -fselective-scheduling -fno-tree-dominator-opts -fno-reg-struct-return -fno-rename-registers --param case-values-threshold=8 -fno-crossjumping -freorder-blocks-and-partition -fno-tree-loop-if-convert -fno-tree-sink -fgcse-sm -fno-strict-overflow   -lc -lm -lgcc -lsys -T ../common/default.ld
 Memory location  : STACK
 seedcrc          : 0xe9f5
 [0]crclist       : 0xe714
@@ -93,9 +93,9 @@ seedcrc          : 0xe9f5
 [0]crcstate      : 0x8e3a
 [0]crcfinal      : 0x9f95
 Correct operation validated. See README.md for run and reporting rules.
-CoreMark 1.0 : 333.304725 / GCC10.2.0 -O3 -march=rv32im -mabi=ilp32 -nostartfiles -nostdlib -L../common -DPERFORMANCE_RUN=1   -lc -lm -lgcc -lsys -T ../common/default.ld / STACK
-CoreMark/MHz: 3.333047
-TB: Aborted at 14684140 ns
+CoreMark 1.0 : 359.425853 / GCC10.2.0 -O2 -march=rv32im -mabi=ilp32 -nostartfiles -nostdlib -L../common -DPERFORMANCE_RUN=1 -fno-common -funroll-loops -finline-functions -falign-functions=16 -falign-jumps=4 -falign-loops=4 -finline-limit=1000 -fno-if-conversion2 -fselective-scheduling -fno-tree-dominator-opts -fno-reg-struct-return -fno-rename-registers --param case-values-threshold=8 -fno-crossjumping -freorder-blocks-and-partition -fno-tree-loop-if-convert -fno-tree-sink -fgcse-sm -fno-strict-overflow   -lc -lm -lgcc -lsys -T ../common/default.ld / STACK
+CoreMark/MHz: 3.594259
+TB: Aborted at 14088860 ns
 ```
 
 ---
@@ -107,10 +107,10 @@ The output of dhrystone is;
         Copyright (c) 1996-2018 by all Contributors,
         ALL RIGHTS RESERVED
 Running: ../../../sw/dhrystone/dhrystone.elf
-Memory: 0x80000000 - 0x8001502f (Size=84KB) [.text]
-Memory: 0x80015030 - 0x8001506b (Size=0KB) [.eh_frame]
-Memory: 0x80015070 - 0x80016dcb (Size=7KB) [.data]
-Memory: 0x80016dcc - 0x8001d60f (Size=26KB) [.bss]
+Memory: 0x80000000 - 0x80015387 (Size=84KB) [.text]
+Memory: 0x80015388 - 0x800153c3 (Size=0KB) [.eh_frame]
+Memory: 0x800153c8 - 0x80017123 (Size=7KB) [.data]
+Memory: 0x80017124 - 0x8001d967 (Size=26KB) [.bss]
 
 Info: (I702) default timescale unit used for tracing: 1 ns (sysc_wave.vcd)
 
@@ -137,7 +137,7 @@ Arr_1_Glob[8]:       7
 Arr_2_Glob[8][7]:    110
         should be:   Number_Of_Runs + 10
 Ptr_Glob->
-  Ptr_Comp:          -2147379688
+  Ptr_Comp:          -2147378832
         should be:   (implementation-dependent)
   Discr:             0
         should be:   0
@@ -148,7 +148,7 @@ Ptr_Glob->
   Str_Comp:          DHRYSTONE PROGRAM, SOME STRING
         should be:   DHRYSTONE PROGRAM, SOME STRING
 Next_Ptr_Glob->
-  Ptr_Comp:          -2147379688
+  Ptr_Comp:          -2147378832
         should be:   (implementation-dependent), same as above
   Discr:             0
         should be:   0
@@ -172,10 +172,10 @@ Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
 Number_Of_Runs: 100
-User_Time: 25362 cycles
-Dhrystones_Per_Second_Per_MHz: 3942
-DMIPS_Per_MHz: 2.243
-TB: Aborted at 1678880 ns
+User_Time: 24960 cycles
+Dhrystones_Per_Second_Per_MHz: 4006
+DMIPS_Per_MHz: 2.280
+TB: Aborted at 1655460 ns
 ```
 
 To run benchmarks in TCM, running the following commands.
@@ -189,7 +189,7 @@ $ make tcm=1 dhrystone
 Getting the following resuls,
 
 ```
-DMIPS_Per_MHz: 2.415
-CoreMark/MHz: 3.345606
+DMIPS_Per_MHz: 2.400
+CoreMark/MHz: 3.668722
 ```
 

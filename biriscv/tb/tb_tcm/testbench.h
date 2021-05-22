@@ -11,7 +11,7 @@
 #include "verilated_vcd_sc.h"
 
 #define MEM_BASE 0x00000000
-#define MEM_SIZE (128 * 1024)
+#define MEM_SIZE (256 * 1024)
 
 //-----------------------------------------------------------------
 // Command line options

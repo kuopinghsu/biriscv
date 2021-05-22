@@ -4,7 +4,7 @@ _start = 0;
 
 MEMORY
 {
-  mem : ORIGIN = 0x00000000, LENGTH = 128K
+  mem : ORIGIN = 0x00000000, LENGTH = 256K
 }
 
 SECTIONS

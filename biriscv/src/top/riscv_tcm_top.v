@@ -31,7 +31,7 @@ module riscv_tcm_top
      parameter BOOT_VECTOR      = 32'h00000000
     ,parameter CORE_ID          = 0
     ,parameter TCM_MEM_BASE     = 32'h00000000
-    ,parameter TCM_MEM_SIZE     = 128 * 1024
+    ,parameter TCM_MEM_SIZE     = 256 * 1024
     ,parameter SUPPORT_BRANCH_PREDICTION = 1
     ,parameter SUPPORT_MULDIV   = 1
     ,parameter SUPPORT_SUPER    = 0

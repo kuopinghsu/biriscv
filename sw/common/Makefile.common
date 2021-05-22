@@ -21,6 +21,13 @@ else
 LINKSCR := tcm.ld
 endif
 
-CFLAGS  := -O3 -Wall $(ARCH) -nostartfiles -nostdlib
+CFLAGS  := -O2 -Wall $(ARCH) -nostartfiles -nostdlib
+CFLAGS  += -fno-common -funroll-loops -finline-functions -falign-functions=16
+CFLAGS  += -falign-jumps=4 -falign-loops=4 -finline-limit=1000
+CFLAGS  += -fno-if-conversion2 -fselective-scheduling -fno-tree-dominator-opts
+CFLAGS  += -fno-reg-struct-return -fno-rename-registers
+CFLAGS  += --param case-values-threshold=8 -fno-crossjumping
+CFLAGS  += -freorder-blocks-and-partition -fno-tree-loop-if-convert
+CFLAGS  += -fno-tree-sink -fgcse-sm -fno-strict-overflow
 ASFLAGS := $(ARCH)
 LDFLAGS := -lc -lm -lgcc -lsys
