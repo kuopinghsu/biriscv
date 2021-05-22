@@ -178,6 +178,7 @@ DMIPS_Per_MHz: 2.280
 TB: Aborted at 1655460 ns
 ```
 
+---
 To run benchmarks in TCM, running the following commands.
 
 
