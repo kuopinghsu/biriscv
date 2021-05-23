@@ -190,13 +190,18 @@ TB: Aborted at 1655460 ns
 
 This is the summaries obtained using different compiler versions.
 
-| In External Memory | gcc-7.2.0 | gcc-10.2.0 |
-|--------------------|-----------|------------|
-| DMIPS_Per_MHz      | 2.228     | 2.280      |
-| CoreMark/MHz       | 4.059887  | 3.594259   |
+| In External Memory | gcc-7.2.0 | gcc-8.3.0 | gcc-9.2.0 | gcc-10.2.0 | gcc-11.1.0 |
+|--------------------|-----------|-----------|-----------|------------|------------|
+| DMIPS/MHz          | 2.228     | 2.244     | 2.292     | 2.280      | 2.269      |
+| CoreMark/MHz       | 4.059887  | 4.08323   | 3.592209  | 3.594259   | 3.978821   |
+
+<img src="images/inMemory.svg" alt="In External Memory" width=480><br>
 
 
-| In TCM        | gcc-7.2.0 | gcc-10.2.0 |
-|---------------|-----------|------------|
-| DMIPS_Per_MHz | 2.346     | 2.400      |
-| CoreMark/MHz  | 4.142030  | 3.668722   |
+| In TCM       | gcc-7.2.0 | gcc-8.3.0 | gcc-9.2.0 | gcc-10.2.0 | gcc-11.1.0 |
+|--------------|-----------|-----------|-----------|------------|------------|
+| DMIPS/MHz    | 2.346     | 2.349     | 2.389     | 2.400      | 2.383      |
+| CoreMark/MHz | 4.142030  | 4.161448  | 3.649139  | 3.668722   | 4.052968   |
+
+<img src="images/inTCM.svg" alt="In TCM" width=480><br>
+
