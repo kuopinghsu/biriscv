@@ -190,7 +190,6 @@ TB: Aborted at 1655460 ns
 
 This is the summaries obtained using different compiler versions.
 
-* in external memory
 |--------------------|-----------|------------|
 | In External Memory | gcc-7.2.0 | gcc-10.2.0 |
 |--------------------|-----------|------------|
@@ -198,7 +197,6 @@ This is the summaries obtained using different compiler versions.
 | CoreMark/MHz       | 4.059887  | 3.594259   |
 |--------------------|-----------|------------|
 
-* in TCM
 |---------------|-----------|------------|
 | In TCM        | gcc-7.2.0 | gcc-10.2.0 |
 |---------------|-----------|------------|
