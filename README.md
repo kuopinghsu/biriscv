@@ -71,9 +71,9 @@ $ make tcm=1 coremark
 $ make tcm=1 dhrystone
 ```
 
-### Run coremark in memory via cache
+### Coremark benchmark running with code and data in external memories
 
-This is the results of running coremark in memory using gcc-10.2.0.
+This is the results of running coremark in external memory using gcc-10.2.0.
 
 ```
         SystemC 2.3.3-Accellera --- May 18 2021 20:21:23
@@ -106,9 +106,9 @@ CoreMark/MHz: 3.594259
 TB: Aborted at 14088860 ns
 ```
 
-### Run dhrystone in memory via cache
+### Dhrystone benchmark running with code and data in external memories
 
-This is the results of running dhrystone in memory using gcc-10.2.0.
+This is the results of running dhrystone in external memory using gcc-10.2.0.
 
 ```
         SystemC 2.3.3-Accellera --- May 18 2021 20:21:23
@@ -190,14 +190,18 @@ TB: Aborted at 1655460 ns
 
 This is the summaries obtained using different compiler versions.
 
-| In Memory     | gcc-7.2.0 | gcc-10.2.0 |
+* in external memory
+|--------------------|-----------|------------|
+| In External Memory | gcc-7.2.0 | gcc-10.2.0 |
+|--------------------|-----------|------------|
+| DMIPS_Per_MHz      | 2.228     | 2.280      |
+| CoreMark/MHz       | 4.059887  | 3.594259   |
+|--------------------|-----------|------------|
+
+* in TCM
 |---------------|-----------|------------|
-| DMIPS_Per_MHz | 2.228     | 2.280      |
-| CoreMark/MHz  | 4.059887  | 3.594259   |
-
-
 | In TCM        | gcc-7.2.0 | gcc-10.2.0 |
 |---------------|-----------|------------|
 | DMIPS_Per_MHz | 2.346     | 2.400      |
 | CoreMark/MHz  | 4.142030  | 3.668722   |
-
+|---------------|-----------|------------|
