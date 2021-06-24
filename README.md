@@ -27,8 +27,6 @@ Install RISCV toolchains.
         libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
         gperf libtool patchutils bc zlib1g-dev git libexpat1-dev
         
-    sudo apt install verilator libsystemc-dev
-
     git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
     cd riscv-gnu-toolchain
 
@@ -36,12 +34,12 @@ Install RISCV toolchains.
     ../configure --prefix=/opt/riscv --enable-multilib
     make -j$(nproc)
 
-Install Verilator
+Install Verilator & SystemC
 
     # Ubuntu packages needed:
-    sudo apt-get install verilator
+    sudo apt-get install verilator libsystemc-dev
 
-    # install systemc
+    # install systemc if the libsystemc-dev package unavaliable
     wget https://www.accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
     tar xzf systemc-2.3.3.tar.gz
     cd systemc-2.3.3
