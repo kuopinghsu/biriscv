@@ -37,9 +37,9 @@ Install RISCV toolchains.
 Install Verilator & SystemC
 
     # Ubuntu packages needed:
-    sudo apt-get install verilator libsystemc-dev
+    sudo apt-get install verilator
 
-    # install systemc if the libsystemc-dev package unavaliable
+    # install systemc
     wget https://www.accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
     tar xzf systemc-2.3.3.tar.gz
     cd systemc-2.3.3
