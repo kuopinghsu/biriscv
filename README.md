@@ -23,9 +23,11 @@ The SystemC and Verilator must be installed properly in system.
 Install RISCV toolchains.
 
     # Ubuntu packages needed:
-    sudo apt-get install autoconf automake autotools-dev curl libmpc-dev \
+    sudo apt install autoconf automake autotools-dev curl libmpc-dev \
         libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
         gperf libtool patchutils bc zlib1g-dev git libexpat1-dev
+        
+    sudo apt install verilator libsystemc-dev
 
     git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
     cd riscv-gnu-toolchain
